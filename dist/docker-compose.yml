@@ -1,0 +1,14 @@
+version: "3"
+services:
+  reqover-proxy:
+    image: reqover/reqover-proxy:latest
+    tty: true
+    stdin_open: true
+    ports:
+      - "8080:8080"
+    environment:
+      PROJECT_TOKEN: ${PROJECT_TOKEN}
+      SWAGGER_URL: ${SWAGGER_URL}
+      BASE_PATH: ${BASE_PATH}
+      BRANCH: ${BRANCH}
+    entrypoint: '/bin/sh -c "stty rows 24 cols 80 && mitmproxy -s main.py -m reverse:${TARGET_SERVICE_URL}"'

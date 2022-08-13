@@ -19,3 +19,15 @@ reqover/reqover-proxy --mode reverse:https://petstore.swagger.io
 ```
 curl --location --request GET 'http://localhost:8080/v2/pet/findByStatus?status=available'
 ```
+
+Run using docker compose:
+
+```
+docker-compose up -d
+```
+
+When finish
+
+```
+docker-compose down
+```
