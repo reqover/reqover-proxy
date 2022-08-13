@@ -4,8 +4,8 @@ RUN apk add build-base
 
 WORKDIR /app
 
-COPY main.py reqover.py /app
-COPY requirements.txt /app
+COPY main.py reqover.py /app/
+COPY requirements.txt /app/
 
 RUN pip install -r requirements.txt
 
