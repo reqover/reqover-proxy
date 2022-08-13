@@ -2,8 +2,10 @@
 
 1. Start docker container.
 
-- Mind to change REQOVER_BUILD_ID to your Reqover build id
+- Mind to change PROJECT_TOKEN to your Reqover build id
 - Change url https://petstore.swagger.io to your testing server target
+- BASE_PATH is optional
+- BRANCH is optional
 
 ```
 docker run -it -p 8080:8080 \
