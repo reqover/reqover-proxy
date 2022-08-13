@@ -22,7 +22,7 @@ jobs:
           docker build -f Dockerfile -t reqover/reqover-proxy:latest .
     - name: Push
       run: |
-          docker push reqover/reqover:latest
+          docker push reqover/reqover-proxy:latest
     - name: Tag image
       run: |
           docker tag reqover/reqover:latest reqover/reqover-proxy:${GITHUB_SHA::8}
