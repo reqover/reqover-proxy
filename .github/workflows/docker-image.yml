@@ -3,16 +3,29 @@ name: Docker Image CI
 on:
   push:
     branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
 
 jobs:
 
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag reqover/reqover-proxy:$(date +%s)
+    - name: Login to DockerHub
+      uses: docker/login-action@v1
+      with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Build
+      run: |
+          docker build -f Dockerfile -t reqover/reqover-proxy:latest .
+    - name: Push
+      run: |
+          docker push reqover/reqover:latest
+    - name: Tag image
+      run: |
+          docker tag reqover/reqover:latest reqover/reqover-proxy:${GITHUB_SHA::8}
+    - name: Push tagged
+      run: |
+          docker push reqover/reqover-proxy:${GITHUB_SHA::8}
