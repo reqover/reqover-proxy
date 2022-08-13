@@ -20,10 +20,12 @@ reqover/reqover-proxy --mode reverse:https://petstore.swagger.io
 curl --location --request GET 'http://localhost:8080/v2/pet/findByStatus?status=available'
 ```
 
-Run using docker compose:
+
+
+Run using docker-compose from dist folder:
 
 ```
-docker-compose up -d
+cd dist && docker-compose up -d
 ```
 
 When finish
