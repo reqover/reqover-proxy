@@ -25,7 +25,7 @@ jobs:
           docker push reqover/reqover-proxy:latest
     - name: Tag image
       run: |
-          docker tag reqover/reqover:latest reqover/reqover-proxy:${GITHUB_SHA::8}
+          docker tag reqover/reqover-proxy:latest reqover/reqover-proxy:${GITHUB_SHA::8}
     - name: Push tagged
       run: |
           docker push reqover/reqover-proxy:${GITHUB_SHA::8}
