@@ -15,7 +15,6 @@ from urllib import parse
 import requests as requests
 
 REQOVER_SERVER = os.environ.get("REQOVER_SERVER", "http://reqover-io.herokuapp.com")
-BUILD_ID = os.environ.get("REQOVER_BUILD_ID")
 
 
 def cover(flow):
@@ -38,7 +37,7 @@ def cover(flow):
         "body": body,
     }
 
-    requests.post(f"{REQOVER_SERVER}/{BUILD_ID}/results", json=result)
+    return result
     # __save_result(result)
 
 
@@ -68,3 +67,27 @@ def __save_result(result, path=None):
     file_name = f"{results_dir}/{suffix}-coverage.json"
     with open(file_name, 'w') as outfile:
         json.dump(result, outfile)
+
+
+def create_build(server_url, data, token, file=None):
+    files = {"file": ""}
+    if file:
+        files = {"specification": open(file, 'rb')}
+
+    res = requests.post(f"{server_url}/{token}/builds", files=files, data=data)
+    return res.json()['resultsPath']
+
+
+def send_result(url, result):
+    requests.post(url, json=result)
+
+
+def save_spec_file(data):
+    file_name = "/tmp/swagger.json"
+    with open(file_name, "w") as outfile:
+        json.dump(data, outfile)
+    return file_name
+
+
+def download_swagger_spec(url):
+    return requests.get(url).json()
