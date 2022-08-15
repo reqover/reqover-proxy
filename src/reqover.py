@@ -91,3 +91,7 @@ def save_spec_file(data):
 
 def download_swagger_spec(url):
     return requests.get(url).json()
+
+
+def finish_build(results_url):
+    requests.post(results_url, json={"type": "complete"})

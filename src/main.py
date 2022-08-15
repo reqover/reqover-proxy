@@ -1,6 +1,7 @@
 import os
 
-from reqover import cover, create_build, REQOVER_SERVER, send_result, download_swagger_spec, save_spec_file
+from reqover import cover, create_build, REQOVER_SERVER, send_result, download_swagger_spec, save_spec_file, \
+    finish_build
 
 PROJECT_TOKEN = os.environ.get("PROJECT_TOKEN")
 BRANCH = os.environ.get("BRANCH", "Master")
@@ -22,6 +23,9 @@ class Reqover:
             "basePath": BASE_PATH,
         }
         self.results_url = create_build(REQOVER_SERVER, data, PROJECT_TOKEN, file=file_path)
+
+    def done(self):
+        finish_build(self.results_url)
 
     def response(self, flow):
         try:
