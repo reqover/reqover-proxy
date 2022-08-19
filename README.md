@@ -1,7 +1,7 @@
 ### Reqover proxy 
 
 0. Create project at https://reqover.netlify.app
-1. 
+
 2. Start docker container.
 
 - Mind to change PROJECT_TOKEN to your Reqover build id
