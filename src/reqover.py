@@ -35,10 +35,10 @@ def cover(flow):
         "statusCode": f"{response.status_code}",
         "parameters": query_parameters,
         "body": body,
-        # "response": {
-        #     "body": response.content.decode("UTF-8"),
-        #     "status_code": response.status_code
-        # }
+        "response": {
+            "body": response.content.decode("UTF-8"),
+            "status_code": response.status_code
+        }
     }
 
     return result
