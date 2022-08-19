@@ -1,12 +1,15 @@
 ### Reqover proxy 
 
-1. Start docker container.
+0. Create project at https://reqover.netlify.app
+1. 
+2. Start docker container.
 
 - Mind to change PROJECT_TOKEN to your Reqover build id
 - Change url https://petstore.swagger.io to your testing server target
 - BASE_PATH is optional
 - BRANCH is optional
 
+For Linux:
 ```
 docker run -it -p 8080:8080 \
     -e PROJECT_TOKEN=4zjud4ttejxk \
@@ -16,6 +19,7 @@ docker run -it -p 8080:8080 \
     reqover/reqover-proxy --mode reverse:https://petstore.swagger.io
 ```
 
+For Windows:
 ```
 docker run -it -p 8080:8080 `
     -e PROJECT_TOKEN=4zjud4ttejxk `
